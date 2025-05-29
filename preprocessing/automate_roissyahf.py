@@ -6,6 +6,8 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 
 
+input_file_path = os.path.join(os.path.dirname(__file__), "..", "loan_data.csv")
+
 def load_data(file_path):
     df = pd.read_csv(file_path)
     print(f"Dataset successfully loaded with shape: {df.shape}")
@@ -88,7 +90,7 @@ def split_data(df, target_col='loan_status'):
     return X_train, X_test, y_train, y_test
 
 
-output_dir = os.path.join(os.path.dirname(__file__), "preprocessing")
+output_dir = os.path.join(os.path.dirname(__file__), "loan_preprocessing")
 os.makedirs(output_dir, exist_ok=True)
 train_file_path = os.path.join(output_dir, "train_data.csv")
 test_file_path = os.path.join(output_dir, "test_data.csv")
@@ -96,13 +98,13 @@ test_file_path = os.path.join(output_dir, "test_data.csv")
 def save_to_csv(X_train, X_test, y_train, y_test):
     pd.concat([X_train, y_train], axis=1).to_csv(train_file_path, index=False)
     pd.concat([X_test, y_test], axis=1).to_csv(test_file_path, index=False)
-    print("Data saved to preprocessing/train_data.csv and preprocessing/test_data.csv")
+    print("Data saved to loan_preprocessing/train_data.csv and loan_preprocessing/test_data.csv")
 
 
 if __name__ == '__main__':
     warnings.filterwarnings("ignore")
     
-    df_raw = load_data('loan_data.csv')
+    df_raw = load_data(input_file_path)
     df_cleaned = clean_data(df_raw)
     df_no_outliers = handle_outliers(df_cleaned)
     df_binned = apply_binning(df_no_outliers)
