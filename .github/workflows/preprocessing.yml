@@ -40,4 +40,5 @@ jobs:
         with:
           name: preprocessing-loan-approval-data
           path: |
-            preprocessing/*.csv
+            preprocessing/loan_preprocessing/train_data.csv
+            preprocessing/loan_preprocessing/test_data.csv
