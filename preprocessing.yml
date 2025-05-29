@@ -1,0 +1,40 @@
+name: Run Preprocessing Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.7'
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy scikit-learn seaborn matplotlib
+
+      - name: 🧼 Run preprocessing pipeline
+        run: |
+          python automate_roissyahf.py
+
+      - name: 📁 Upload processed data as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preprocessing
+          path: |
+            train_data.csv
+            test_data.csv
