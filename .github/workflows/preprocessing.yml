@@ -2,12 +2,16 @@ name: Run Preprocessing Pipeline
 
 on:
   push:
+    paths:
+      - 'preprocessing/**'
+      - '.github/workflows/preprocessing.yml'
     branches:
       - main
   pull_request:
     branches:
       - main
-  workflow_dispatch:  # Allows manual triggering
+
+  workflow_dispatch:
 
 jobs:
   preprocessing:
@@ -34,7 +38,7 @@ jobs:
       - name: Upload processed data as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: preprocessing
+          name: preprocessing-loan-approval-data
           path: |
-            train_data.csv
-            test_data.csv
+            preprocessing/train_data.csv
+            preprocessing/test_data.csv
