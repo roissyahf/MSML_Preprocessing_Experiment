@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 import warnings
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
@@ -87,10 +88,15 @@ def split_data(df, target_col='loan_status'):
     return X_train, X_test, y_train, y_test
 
 
+output_dir = os.path.join(os.path.dirname(__file__), "preprocessing")
+os.makedirs(output_dir, exist_ok=True)
+train_file_path = os.path.join(output_dir, "train_data.csv")
+test_file_path = os.path.join(output_dir, "test_data.csv")
+
 def save_to_csv(X_train, X_test, y_train, y_test):
-    pd.concat([X_train, y_train], axis=1).to_csv('preprocessing/train_data.csv', index=False)
-    pd.concat([X_test, y_test], axis=1).to_csv('preprocessing/test_data.csv', index=False)
-    print("Data saved to train_data.csv and test_data.csv")
+    pd.concat([X_train, y_train], axis=1).to_csv(train_file_path, index=False)
+    pd.concat([X_test, y_test], axis=1).to_csv(test_file_path, index=False)
+    print("Data saved to preprocessing/train_data.csv and preprocessing/test_data.csv")
 
 
 if __name__ == '__main__':
