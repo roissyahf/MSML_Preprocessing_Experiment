@@ -33,7 +33,7 @@ jobs:
 
       - name: Run preprocessing pipeline
         run: |
-          python peprocessing/automate_roissyahf.py
+          python preprocessing/automate_roissyahf.py
 
       - name: Upload processed data as artifact
         uses: actions/upload-artifact@v4
