@@ -88,8 +88,8 @@ def split_data(df, target_col='loan_status'):
 
 
 def save_to_csv(X_train, X_test, y_train, y_test):
-    pd.concat([X_train, y_train], axis=1).to_csv('train_data.csv', index=False)
-    pd.concat([X_test, y_test], axis=1).to_csv('test_data.csv', index=False)
+    pd.concat([X_train, y_train], axis=1).to_csv('preprocessing/train_data.csv', index=False)
+    pd.concat([X_test, y_test], axis=1).to_csv('preprocessing/test_data.csv', index=False)
     print("Data saved to train_data.csv and test_data.csv")
 
 
