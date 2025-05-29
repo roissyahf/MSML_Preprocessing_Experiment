@@ -96,7 +96,7 @@ def save_to_csv(X_train, X_test, y_train, y_test):
 if __name__ == '__main__':
     warnings.filterwarnings("ignore")
     
-    df_raw = load_data('preprocessing/loan_data.csv')
+    df_raw = load_data('loan_data.csv')
     df_cleaned = clean_data(df_raw)
     df_no_outliers = handle_outliers(df_cleaned)
     df_binned = apply_binning(df_no_outliers)
